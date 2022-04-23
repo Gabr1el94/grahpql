@@ -17,7 +17,18 @@ const {gql, ApolloServer } = require("apollo-server");
  * Arguments -> Parametrizações(obj,args)
  * 
  * resolvers -> ele mapea especificamente para o tipo objeto;
- * typeDefs -> são os tipos nos objetos que possam ser mapeados
+ * typeDefs -> são os tipos nos objetos que possam ser consultados e mapeados
+ * 
+ * For example Aliases:
+ *  <Name_Alias> : user;
+ * 
+ * Fragments(são unidades reutilizaveis) example:
+ *  users: () => db.users
+ *  query{
+ *      users{ ...<Name_Fragment>}
+ *  }
+ * 
+ *  fragment <Name_Fragment> on <Type_Query>
  */
  const db = [
      {
@@ -70,6 +81,7 @@ const products = [
         price: 12.90
     },
 ];
+
 const resolvers = {
     Funcionary:{
         phone(obj){
