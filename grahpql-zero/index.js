@@ -14,9 +14,33 @@ const {gql, ApolloServer } = require("apollo-server");
  *  => Schema - É uma representação de um objeto
  *   -> Schema Definition Language(SDL)
  * -------------------------------------
- * Arguments -> Parametrização
+ * Arguments -> Parametrizações(obj,args)
  * 
+ * resolvers -> ele mapea especificamente para o tipo objeto;
+ * typeDefs -> são os tipos nos objetos que possam ser mapeados
  */
+ const db = [
+     {
+         id: 1,
+         name: "Arthur",
+         email: "arthurpaz@gmail.com",
+         phone: "81 96451-6523",
+         profile: 1  
+     },
+     {
+        id: 2,
+        name: "Lucas",
+        email: "arthur@gmail.com",
+        phone: "81 98752-3654",
+        profile: 2  
+    }
+ ] 
+
+ const profiles = [
+     {id: 1, description: "ADMIN"},
+     {id: 2, description: "NORMAL"}
+ ]
+
  const users = [
     {
         id: 1,
@@ -47,7 +71,18 @@ const products = [
     },
 ];
 const resolvers = {
+    Funcionary:{
+        phone(obj){
+            return obj.phone_fixed;
+        },
+        profile(func){
+            return profiles.find(profile => profile.id === func.id);
+        }
+    },
     Query: {
+        profiles(){
+            return profiles;
+        },
         users(){
             return users;
         },
@@ -56,6 +91,9 @@ const resolvers = {
         },
         products(){
             return products;
+        },
+        funcionary(_, args){
+            return db.find((db) => db.id === args.id);
         }
     }
 };
@@ -76,10 +114,25 @@ const typeDefs = gql`
         id: ID 
     }
 
+    type Funcionary {
+        id: Int
+        name: String
+        email: String
+        phone: String
+        profile: Profile
+    }
+
+    type Profile {
+        id: Int
+        description: String
+    }
+
     type Query{
         users: [User]
         products: [Product]
+        funcionary: Funcionary
         user(id: Int): User
+        profiles: [Profile]
     }
 `;
 
