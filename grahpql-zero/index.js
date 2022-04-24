@@ -10,6 +10,22 @@ const {gql, ApolloServer } = require("apollo-server");
 */
 
 /**
+ * Operation Name(É quando dando o nome das operações) 
+ * & Enums(Tipo especial escalagem Valores específicos)
+ * 
+ * 
+ * Example:
+ *  query <Name_Operation>{ ... };
+ * 
+ * Example:
+ *  enum TypeProfile {
+ *      ADMIN
+ *      NORMAL
+ *  }
+ * 
+*/
+
+/**
  * Object Types
  *  => Schema - É uma representação de um objeto
  *   -> Schema Definition Language(SDL)
@@ -30,7 +46,8 @@ const {gql, ApolloServer } = require("apollo-server");
  * 
  *  fragment <Name_Fragment> on <Type_Query>
  */
- const db = [
+ 
+const db = [
      {
          id: 1,
          name: "Arthur",
@@ -45,7 +62,7 @@ const {gql, ApolloServer } = require("apollo-server");
         phone: "81 98752-3654",
         profile: 2  
     }
- ] 
+] 
 
  const profiles = [
      {id: 1, description: "ADMIN"},
