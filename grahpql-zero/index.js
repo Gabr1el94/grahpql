@@ -10,7 +10,7 @@ const {gql, ApolloServer } = require("apollo-server");
 */
 
 /**
- * Operation Name(É quando dando o nome das operações) 
+ * Operation Name(É quando dado o nome das operações) 
  * & Enums(Tipo especial escalagem Valores específicos)
  * 
  * 
@@ -24,6 +24,20 @@ const {gql, ApolloServer } = require("apollo-server");
  *  }
  * 
 */
+
+/**
+ *  Directives(As diretivas são precedidas pelo caractere @, assim) & 
+ *  Variables(São parametrizadas em operações consulta)
+ * 
+ *  Example:
+ *    query <Name_Operation>($nameVar : <type_scalar>, $withProfile : Bollean!, $isActive : Bollean){ 
+ *         name email 
+ *         phone @skip(if: $isActive) 
+ *         profile @include(if: $withProfile){ ... }
+ *     }
+ *     
+ *     More info: https://www.apollographql.com/docs/apollo-server/schema/directives/ 
+ */
 
 /**
  * Object Types
