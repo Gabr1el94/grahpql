@@ -1,0 +1,12 @@
+
+type Employee {
+    id: Int
+    name: String
+    email: String
+    phone: String
+    profile: Profile
+}
+
+type Query {
+    employee: Employee
+}

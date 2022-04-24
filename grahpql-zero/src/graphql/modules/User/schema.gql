@@ -1,0 +1,13 @@
+type User {
+        age: Int
+        salary: Float
+        name: String
+        active: Boolean
+        id: ID 
+}
+
+
+type Query{
+    users: [User]
+    user(id: Int): User
+}

@@ -1,5 +1,5 @@
 const {gql, ApolloServer } = require("apollo-server");
-
+const {typeDefs, resolvers} = require("./src/graphql");
 /**
  * Scalar Types
  *  - Int
@@ -60,124 +60,6 @@ const {gql, ApolloServer } = require("apollo-server");
  * 
  *  fragment <Name_Fragment> on <Type_Query>
  */
- 
-const db = [
-     {
-         id: 1,
-         name: "Arthur",
-         email: "arthurpaz@gmail.com",
-         phone: "81 96451-6523",
-         profile: 1  
-     },
-     {
-        id: 2,
-        name: "Lucas",
-        email: "arthur@gmail.com",
-        phone: "81 98752-3654",
-        profile: 2  
-    }
-] 
-
- const profiles = [
-     {id: 1, description: "ADMIN"},
-     {id: 2, description: "NORMAL"}
- ]
-
- const users = [
-    {
-        id: 1,
-        name: 'Katia',
-        salary: 1234.56,
-        active: false,
-        age: 52
-    },
-    {
-        id: 2,
-        name: 'Gabriel',
-        salary: 3000,
-        active: true,
-        age: 28
-    }
-];
-
-const products = [
-    {
-        id: 1,
-        name: 'Coca-Cola',
-        price: 9.90
-    },
-    {
-        id: 2,
-        name: 'Beer',
-        price: 12.90
-    },
-];
-
-const resolvers = {
-    Funcionary:{
-        phone(obj){
-            return obj.phone_fixed;
-        },
-        profile(func){
-            return profiles.find(profile => profile.id === func.id);
-        }
-    },
-    Query: {
-        profiles(){
-            return profiles;
-        },
-        users(){
-            return users;
-        },
-        user(_, args){
-            return users.find((user) => user.id === args.id); 
-        },
-        products(){
-            return products;
-        },
-        funcionary(_, args){
-            return db.find((db) => db.id === args.id);
-        }
-    }
-};
-
-const typeDefs = gql`
-
-    type Product {
-        id: ID
-        name: String
-        price: Float
-    }
-
-    type User {
-        age: Int
-        salary: Float
-        name: String
-        active: Boolean
-        id: ID 
-    }
-
-    type Funcionary {
-        id: Int
-        name: String
-        email: String
-        phone: String
-        profile: Profile
-    }
-
-    type Profile {
-        id: Int
-        description: String
-    }
-
-    type Query{
-        users: [User]
-        products: [Product]
-        funcionary: Funcionary
-        user(id: Int): User
-        profiles: [Profile]
-    }
-`;
 
 const server = new ApolloServer({
     typeDefs,
@@ -185,4 +67,4 @@ const server = new ApolloServer({
 });
 
 
-server.listen();
+server.listen().then(({url}) => console.log(url) );
