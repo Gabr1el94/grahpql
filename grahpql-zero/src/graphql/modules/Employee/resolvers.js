@@ -22,6 +22,12 @@ module.exports = {
     },
     Mutation: {
         createEmployee(_, args){
+
+            const {email} = args;
+            const employeeExists = db.employees.some(u => u.email === email)
+            if (employeeExists) {
+                throw new Error(`Employee Exist: ${args.name}`)
+            }
             const newEmployee = {
                 ...args,
                 id: generatorID(db.employees),
