@@ -1,5 +1,10 @@
 const db = require('../../../db')
 
+function generatorID(list){
+    let last = list[list.length - 1];
+    return !last ? 0 : ++last.id; 
+}
+
 module.exports = {
     Employee:{
         phone(obj){
@@ -12,6 +17,19 @@ module.exports = {
     Query :{
         employee(_, args){
             return db.employees.find((db) => db.id === args.id);
-        }
-    }
-}
+        },
+        employees: () => db.employees,
+    },
+    Mutation: {
+        createEmployee(_, args){
+            const newEmployee = {
+                ...args,
+                id: generatorID(db.employees),
+                profile: 2,
+            }
+            db.employees.push(newEmployee);
+            console.log(db.employees);
+            return newEmployee;
+        },
+    },
+};

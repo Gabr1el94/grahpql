@@ -1,5 +1,5 @@
 const {gql, ApolloServer } = require("apollo-server");
-const {typeDefs, resolvers} = require("./src/graphql");
+const graphql = require("./src/graphql");
 /**
  * Scalar Types
  *  - Int
@@ -61,9 +61,16 @@ const {typeDefs, resolvers} = require("./src/graphql");
  *  fragment <Name_Fragment> on <Type_Query>
  */
 
+/**
+ * Mutation
+ *  => Uma Mutação é uma operação do GraphQL que permite inserir novos dados 
+ *  ou modificar os dados existentes no lado do servidor. 
+ *  Você pode pensar em GraphQL Mutations como o equivalente a solicitações
+ *  POST, PUT, PATCH e DELETE em REST.
+ */
+
 const server = new ApolloServer({
-    typeDefs,
-    resolvers
+    ...graphql
 });
 
 

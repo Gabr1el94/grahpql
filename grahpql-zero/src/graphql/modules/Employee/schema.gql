@@ -9,4 +9,9 @@ type Employee {
 
 type Query {
     employee: Employee
+    employees: [Employee]
+}
+
+type Mutation {
+    createEmployee(name: String, email: String, phone: String): Employee!
 }
