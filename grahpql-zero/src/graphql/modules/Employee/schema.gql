@@ -13,5 +13,5 @@ type Query {
 }
 
 type Mutation {
-    createEmployee(name: String, email: String, phone: String): Employee!
+    createEmployee(name: String, email: String, phone_fixed: String): Employee!
 }

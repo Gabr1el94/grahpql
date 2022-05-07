@@ -4,14 +4,14 @@ module.exports = {
         name: "Arthur",
         email: "arthurpaz@gmail.com",
         phone: "81 96451-6523",
-        profile: 1
+        profile_id: 1
     },
     {
         id: 2,
         name: "Lucas",
         email: "arthur@gmail.com",
         phone: "81 98752-3654",
-        profile: 2
+        profile_id: 2
     }],
     profiles: [
         { id: 1, description: "ADMIN" },

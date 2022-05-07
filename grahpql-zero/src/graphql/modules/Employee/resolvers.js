@@ -10,9 +10,9 @@ module.exports = {
         phone(obj){
             return obj.phone_fixed;
         },
-        profile(func){
-            return db.profiles.find(profile => profile.id === func.id);
-        }
+        profile(employee){
+            return db.profiles.find(profile => profile.id === employee.profile_id);
+        },
     },
     Query :{
         employee(_, args){
@@ -25,10 +25,10 @@ module.exports = {
             const newEmployee = {
                 ...args,
                 id: generatorID(db.employees),
-                profile: 2,
-            }
+                profile_id: 2,
+                phone_fixed: args.phone_fixed
+            };
             db.employees.push(newEmployee);
-            console.log(db.employees);
             return newEmployee;
         },
     },
