@@ -2,7 +2,8 @@ const db = require('../../../db')
 
 function generatorID(list){
     let last = list[list.length - 1];
-    return !last ? 0 : ++last.id; 
+    let newId = !last ? 0 : last.id;
+    return ++newId;
 }
 
 module.exports = {
@@ -21,21 +22,32 @@ module.exports = {
         employees: () => db.employees,
     },
     Mutation: {
-        createEmployee(_, args){
+        createEmployee(_, {data}){
 
-            const {email} = args;
+            const {email} = data;
             const employeeExists = db.employees.some(u => u.email === email)
             if (employeeExists) {
-                throw new Error(`Employee Exist: ${args.name}`)
+                throw new Error(`Employee Exist: ${data.name}`)
             }
             const newEmployee = {
-                ...args,
+                ...data,
                 id: generatorID(db.employees),
                 profile_id: 2,
-                phone_fixed: args.phone_fixed
+                phone_fixed: data.phone
             };
             db.employees.push(newEmployee);
             return newEmployee;
         },
+        updateEmployee(_, {id, data}){
+            const employee = db.employees.find(emp => emp.id === id)
+            const index = db.employees.findIndex(emp => emp.id === id)
+
+            const newEmployee = {
+                ...employee,
+                ...data
+            }
+            db.employees.splice(index, 1, newEmployee);
+            return newEmployee
+        }
     },
 };
