@@ -7,6 +7,11 @@ type Employee {
     profile: Profile
 }
 
+input FilterInput{
+    id: Int
+    email: String
+}
+
 input EmployeeInput {
     name: String
     email: String
@@ -20,5 +25,7 @@ type Query {
 
 type Mutation {
     createEmployee(data: EmployeeInput): Employee!
-    updateEmployee(id: Int, data: EmployeeInput): Employee!
+    updateEmployee(id: Int!, data: EmployeeInput): Employee!
+    deleteEmployee(id: Int!):Boolean
+    deleteEmployeeByEmail(filtro: FilterInput!):Boolean
 }

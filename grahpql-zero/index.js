@@ -63,10 +63,13 @@ const graphql = require("./src/graphql");
 
 /**
  * Mutation
- *  => Uma Mutação é uma operação do GraphQL que permite inserir novos dados 
- *  ou modificar os dados existentes no lado do servidor. 
- *  Você pode pensar em GraphQL Mutations como o equivalente a solicitações
- *  POST, PUT, PATCH e DELETE em REST.
+ *    => Uma Mutação é uma operação do GraphQL que permite inserir novos dados 
+ *    ou modificar os dados existentes no lado do servidor. 
+ *    Você pode pensar em GraphQL Mutations como o equivalente a solicitações
+ *    POST, PUT, PATCH e DELETE em REST.
+ *  Type Input
+ *      Agrupar as propriedades que são comuns para adicionar,deletar,e update
+ *      de um tipo de usuário.
  */
 
 const server = new ApolloServer({
@@ -75,6 +78,8 @@ const server = new ApolloServer({
         if (err.message.startsWith("Employee Exist")) {
             return new Error(err.message)
         }
+
+        return err;
     }
 });
 

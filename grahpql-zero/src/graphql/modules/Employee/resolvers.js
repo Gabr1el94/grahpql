@@ -47,7 +47,26 @@ module.exports = {
                 ...data
             }
             db.employees.splice(index, 1, newEmployee);
-            return newEmployee
+            return newEmployee;
+        },
+        deleteEmployee(_, {id}){
+            const employeeFind = db.employees.find(emp => emp.id === id)
+            db.employees = db.employees.find(emp => emp.id === id)
+
+            return !!employeeFind;
+        },
+        deleteEmployeeByIdOrEmail(_, {filter : { id, email}}){
+            return deleteEmployeeFilter(id ? {id} : {email});
         }
     },
 };
+
+function deleteEmployeeFilter(filter){
+    const key = Object.keys(filter)[0];
+    const value = Object.values(filter)[0];
+    
+    const employeeFind = db.employees.find(emp => emp[key] === value)
+    db.employees = db.employees.find(emp => emp[key] === value)
+    
+    return !!employeeFind;
+}
