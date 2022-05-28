@@ -1,0 +1,23 @@
+{
+  "name": "api-contacts",
+  "version": "1.0.0",
+  "description": "API about contact peoples",
+  "main": "index.js",
+  "scripts": {
+    "start": "nodemon -e js,gql"
+  },
+  "devDependencies": {
+    "nodemon": "^2.0.15"
+  },
+  "dependencies": {
+    "apollo-server": "^2.11.0",
+    "express-graphql": "^0.12.0",
+    "graphql": "^14.6.0",
+    "graphql-tools": "^6.0.8",
+    "knex": "^0.21.1",
+    "pg": "^8.2.1"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC"
+}

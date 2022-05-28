@@ -72,7 +72,7 @@ const graphql = require("./src/graphql");
  *      de um tipo de usuário.
  */
 
-const server = new ApolloServer({
+ const server = new ApolloServer({
     ...graphql,
     formatError:(err) =>{
         if (err.message.startsWith("Employee Exist")) {
