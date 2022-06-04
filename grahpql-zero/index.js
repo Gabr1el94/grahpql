@@ -5,12 +5,19 @@ const graphql = require("./src/graphql");
  *  - Int
  *  - Float
  *  - String
- *  - Boolean
- *  - ID (exclusive)
-*/
+ *  - Boolean const server = new ApolloServer({
+    ...graphql,
+    formatError:(err) =>{
+        if (err.message.startsWith("Employee Exist")) {
+            return new Error(err.message)
+        }
 
-/**
- * Operation Name(É quando dado o nome das operações) 
+        return err;
+    }
+});
+
+
+server.listen().then(({url}) => console.log(url) );uando dado o nome das operações) 
  * & Enums(Tipo especial escalagem Valores específicos)
  * 
  * 
