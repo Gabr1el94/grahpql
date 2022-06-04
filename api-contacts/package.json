@@ -17,7 +17,7 @@
     "knex": "^0.21.1",
     "pg": "^8.2.1"
   },
-  "keywords": [],
-  "author": "",
+  "keywords": ["developer","graphql","javascript","knexfile","postgres"],
+  "author": "Gabriel Soares",
   "license": "ISC"
 }
