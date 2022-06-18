@@ -1,16 +1,13 @@
-const {gql, ApolloServer } = require("apollo-server");
+const { gql, ApolloServer } = require("apollo-server");
 const graphql = require("./src/graphql");
+const GitHubService = require("./src/services/GitHub.service")
 
 const server = new ApolloServer({
     ...graphql,
-    formatError:(err) =>{
-        if (err.message.startsWith("Employee Exist")) {
-            return new Error(err.message)
-        }
-
-        return err;
-    }
+    dataSources: () => ({
+        gitHubService: GitHubService,
+    }),
 });
 
 
-server.listen().then(({url}) => console.log(url));
+server.listen().then(({ url }) => console.log(url));

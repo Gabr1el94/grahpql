@@ -5,5 +5,5 @@ type User {
 }
 
 type Query {
-    user(login: String):User
+    user(login: String): User
 }
