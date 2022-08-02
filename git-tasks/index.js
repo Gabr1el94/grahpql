@@ -9,8 +9,15 @@ const server = new ApolloServer({
     dataSources: () => ({
         gitHubService: GitHubService,
         userRegisterService: UserRegisterService,
-        tasksRegisterService: TasksRegisterService
+        tasksService: TasksRegisterService
     }),
+    context: ({req}) => {
+        const user_id = req.headers.authorization;
+
+        return {
+            user_id,
+        };
+    }
 });
 
 
