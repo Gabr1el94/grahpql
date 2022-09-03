@@ -1,4 +1,6 @@
 const db = require('../db');
+const TaskNotFoundError  = require('../errors/TaskNotFoundError');
+const NoPermissionError = require('../errors/NoPermissionError')
 
 class TasksRegisterService {
 
@@ -10,11 +12,11 @@ class TasksRegisterService {
         const task = await db("tasks").where({id}).first();
 
         if (!task) {
-            throw new Error('Task not found!')
+            throw new TaskNotFoundError('Task not found!')
         }
 
         if(task.user_id !== user_id){
-            throw new Error("You don't have permission!")
+            throw new TaskNotFoundError("You don't have permission!")
         }
 
         return task;
