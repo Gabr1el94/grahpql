@@ -1,16 +1,22 @@
 import React from "react";
+import { useContatosContext } from "../../context/ContatosContext";
+import { GET_CONTATOS } from "../../grahpql";
 
 export default function Item({ item }) {
+  const { contatos } = useContatosContext();
   return (
     <div className="item">
       <h5 className="item-header">
         <a href="name" className="item-title">
           {item.nome}
         </a>
-        <button type="button" className="close">
+        <button type="button" className="close" onClick={() => contatos.deletarContato({
+          variables: {id: item.id},
+          refetchQueries: [{ query: GET_CONTATOS }]
+        })} >
           <span>&times;</span>
         </button>
-      </h5>
+      </h5> 
       <div className="item-body">
         <p className="item-text">{item.email}</p>
         <p className="item-text">{item.telefone}</p>
