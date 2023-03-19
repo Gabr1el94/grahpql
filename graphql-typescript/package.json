@@ -1,0 +1,31 @@
+{
+  "name": "graphql-typescript",
+  "version": "1.0.0",
+  "description": "API simple graphql in typescript",
+  "main": "index.js",
+  "repository": "graphql-typescript",
+  "author": "Gabr1el94",
+  "license": "ISC",
+  "keywords": [
+    "graphql",
+    "ts",
+    "node",
+    "js"
+  ],
+  "scripts": {
+    "dev": "ts-node-dev --respawn --transpile-only src/index.ts"
+  },
+  "dependencies": {
+    "apollo-server": "3.11.1",
+    "dotenv": "^16.0.3",
+    "graphql": "15.5.0",
+    "mongodb": "^5.1.0",
+    "mongoose": "^7.0.2"
+  },
+  "devDependencies": {
+    "@types/node": "^18.14.6",
+    "ts-node": "^10.9.1",
+    "ts-node-dev": "^2.0.0",
+    "typescript": "^4.9.5"
+  }
+}
